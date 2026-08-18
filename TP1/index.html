@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <title>TP1 - Lenguajes 4</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&amp;family=JetBrains+Mono:wght@700;800&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <!-- Main Canvas -->
+    <main class="contenedor">
+        <div class="tarjeta">
+            <!-- Encabezado -->
+            <div class="encabezado">
+                <h2 class="titulo">Lenguajes IV: TP 1 <br />Análisis de Coordenadas</h2>
+                <p class="subtitulo">Obtenga datos geoespaciales con precisión.</p>
+            </div>
+            <!-- Botón principal -->
+            <button class="boton-primario" type="button" id="btn-analizar">
+                <span aria-hidden="true" class="material-symbols-outlined icono-grande">my_location</span>
+                Analizar posición
+            </button>
+            <!-- Estructura de datos -->
+            <div class="lista-datos">
+                <!-- Fila: Error -->
+                <div class="fila-dato oculto" style="background: var(--red); color: var(--white);" id="tarjeta-error">
+                    <div class="titulo-item error-item">
+                        <div>
+                            <span aria-hidden="true" class="material-symbols-outlined icono-grande">error</span>
+                            <span class="etiqueta">Error</span>
+                        </div>
+                        <p class="subtitulo" id="info-error"></p>
+                    </div>
+                </div>
+                <!-- Fila: Latitud -->
+                <div class="fila-dato">
+                    <div class="titulo-item">
+                        <span aria-hidden="true" class="material-symbols-outlined icono-grande">explore</span>
+                        <span class="etiqueta">Latitud</span>
+                    </div>
+                    <div class="acciones-item">
+                        <span class="valor-mono" id="valor-latitud">--</span>
+                        <button aria-label="Copiar Latitud" class="btn-copiar" id="btn-copiar-latitud" title="Copiar coordenadas">
+                            <span class="material-symbols-outlined">content_copy</span>
+                        </button>
+                    </div>
+                </div>
+                <!-- Fila: Longitud -->
+                <div class="fila-dato">
+                    <div class="titulo-item">
+                        <span aria-hidden="true" class="material-symbols-outlined icono-grande">public</span>
+                        <span class="etiqueta">Longitud</span>
+                    </div>
+                    <div class="acciones-item">
+                        <span class="valor-mono" id="valor-longitud">--</span>
+                        <button aria-label="Copiar Longitud" class="btn-copiar" id="btn-copiar-longitud" title="Copiar coordenadas">
+                            <span class="material-symbols-outlined">content_copy</span>
+                        </button>
+                    </div>
+                </div>
+                <!-- Fila: Presición -->
+                <div class="fila-dato">
+                    <div class="titulo-item">
+                        <span aria-hidden="true" class="material-symbols-outlined icono-grande">target</span>
+                        <span class="etiqueta">Precisión</span>
+                    </div>
+                    <span class="valor-mono" id="valor-presicion">-- m</span>
+                    
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="script.js"></script>
+</body>
+
+</html>
