@@ -11,11 +11,6 @@
     --white: #fff;
 }
 
-html,
-body {
-    height: 100%;
-}
-
 body {
     margin: 0;
     font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
@@ -57,19 +52,30 @@ body {
     box-shadow: 16px 16px 0 0 var(--black);
     display: flex;
     flex-direction: column;
-    gap: 2.5rem;
+    /* gap: 2.5rem; */
 }
 
-.encabezado {
-    text-align: left;
+
+.divisor {
     border-bottom: 4px solid var(--black);
-    padding-bottom: 1.5rem;
+    padding: 0;
+    margin: 1.5rem 0;
+    gap: 0;
 }
 
 .titulo {
-    margin: 0 0 0.5rem 0;
+    margin: 1rem 0;
     font-weight: 900;
     font-size: 2.25rem;
+    line-height: 1;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+}
+
+.encabezado {
+    margin: 0.75rem 0;
+    font-weight: 800;
+    font-size: 1.5rem;
     line-height: 1;
     text-transform: uppercase;
     letter-spacing: -0.02em;
@@ -83,7 +89,8 @@ body {
     letter-spacing: 0.18em;
 }
 
-.boton-primario {
+.boton-primario,
+input[type="file"]::file-selector-button {
     width: 100%;
     background: var(--blue);
     color: var(--white);
@@ -102,12 +109,14 @@ body {
     transition: transform 0.08s ease, box-shadow 0.08s ease, background-color 0.08s ease;
 }
 
-.boton-primario:active {
+.boton-primario:active,
+input[type="file"]::file-selector-button:active {
     transform: translate(4px, 4px);
     box-shadow: 4px 4px 0 0 var(--black);
 }
 
-.boton-primario:hover {
+.boton-primario:hover,
+input[type="file"]::file-selector-button:hover {
     background-color: #0039cc;
 }
 
@@ -115,13 +124,14 @@ body {
     font-size: 28px;
 }
 
-.lista-datos {
+.seccion {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
 }
 
-.fila-dato {
+.fila-dato,
+.error-item {
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -146,10 +156,8 @@ body {
 }
 
 .error-item {
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    gap: 0.75rem;
+    color: var(--white);
+    background: var(--red); 
 }
 
 .error-item div {
@@ -180,8 +188,8 @@ body {
     color: var(--black);
     background: var(--white);
     border: 2px solid var(--black);
-    padding: 0.35rem;
     box-shadow: 4px 4px 0 0 var(--black);
+    padding: 0.35rem;
     cursor: pointer;
     transition: all 0.1s;
 }
@@ -201,4 +209,23 @@ body {
 
 .oculto {
     display: none;
+}
+
+.contenedor-imagen {
+    width: 100%;
+    border: 4px solid var(--black);
+    box-shadow: 8px 8px 0 0 var(--black);
+}
+
+.contenedor-imagen img {
+    width: 100%;
+    color: gray;
+    object-fit: cover;
+    display: flex;
+    justify-content: center;
+    padding: 1rem 0.5rem;
+    font-weight: 800;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
 }

@@ -19,28 +19,25 @@
     <!-- Main Canvas -->
     <main class="contenedor">
         <div class="tarjeta">
-            <!-- Encabezado -->
-            <div class="encabezado">
-                <h2 class="titulo">Lenguajes IV: TP 1 <br />Análisis de Coordenadas</h2>
-                <p class="subtitulo">Obtenga datos geoespaciales con precisión.</p>
+            <div>
+                <h2 class="titulo">Lenguajes IV: TP 1</h2>
+                <h3 class="encabezado">Bautista Genovese - 46.790.865</h3>
+                <p class="subtitulo">
+                    Obtenga datos geoespaciales con precisión <br />
+                    y visualize imagenes de manera dinámica.
+                </p>
             </div>
-            <!-- Botón principal -->
-            <button class="boton-primario" type="button" id="btn-analizar">
-                <span aria-hidden="true" class="material-symbols-outlined icono-grande">my_location</span>
-                Analizar posición
-            </button>
-            <!-- Estructura de datos -->
-            <div class="lista-datos">
+            <div class="divisor"></div>
+
+            <!-- Estructura de los datos de coordenadas -->
+            <div class="seccion">
+                <!-- Encabezado -->
+                <h3 class="encabezado">Datos geoespaciales</h3>
+
                 <!-- Fila: Error -->
-                <div class="fila-dato oculto" style="background: var(--red); color: var(--white);" id="tarjeta-error">
-                    <div class="titulo-item error-item">
-                        <div>
-                            <span aria-hidden="true" class="material-symbols-outlined icono-grande">error</span>
-                            <span class="etiqueta">Error</span>
-                        </div>
-                        <p class="subtitulo" id="info-error"></p>
-                    </div>
+                <div class="error-item oculto" id="error-coordenadas">
                 </div>
+
                 <!-- Fila: Latitud -->
                 <div class="fila-dato">
                     <div class="titulo-item">
@@ -49,11 +46,13 @@
                     </div>
                     <div class="acciones-item">
                         <span class="valor-mono" id="valor-latitud">--</span>
-                        <button aria-label="Copiar Latitud" class="btn-copiar" id="btn-copiar-latitud" title="Copiar coordenadas">
+                        <button aria-label="Copiar Latitud" class="btn-copiar" id="btn-copiar-latitud"
+                            title="Copiar coordenadas">
                             <span class="material-symbols-outlined">content_copy</span>
                         </button>
                     </div>
                 </div>
+
                 <!-- Fila: Longitud -->
                 <div class="fila-dato">
                     <div class="titulo-item">
@@ -62,11 +61,13 @@
                     </div>
                     <div class="acciones-item">
                         <span class="valor-mono" id="valor-longitud">--</span>
-                        <button aria-label="Copiar Longitud" class="btn-copiar" id="btn-copiar-longitud" title="Copiar coordenadas">
+                        <button aria-label="Copiar Longitud" class="btn-copiar" id="btn-copiar-longitud"
+                            title="Copiar coordenadas">
                             <span class="material-symbols-outlined">content_copy</span>
                         </button>
                     </div>
                 </div>
+
                 <!-- Fila: Presición -->
                 <div class="fila-dato">
                     <div class="titulo-item">
@@ -74,7 +75,33 @@
                         <span class="etiqueta">Precisión</span>
                     </div>
                     <span class="valor-mono" id="valor-presicion">-- m</span>
-                    
+                </div>
+            </div>
+
+            <div class="divisor"></div>
+
+            <!-- contenedor con la imagen y boton de subir -->
+            <div class="seccion">
+                <!-- Encabezado -->
+                <h3 class="encabezado">Carga y muestreo de imagenes</h3>
+
+                <!-- Error -->
+                <div class="error-item oculto" id="error-imagen">
+                </div>
+
+                <!-- Boton para cargar imagen -->
+                <button class="boton-primario" type="button" id="btn-cargar">
+                    <span class="material-symbols-outlined">image_arrow_up</span>
+                    Cargar imagen
+                </button>
+
+                <!-- Oculto el input porque nome gusta su estilo -->
+                <!-- Internamente igual se hace un clic en él -->
+                <input type="file" id="selector-foto" accept="image/*" title="Cargar imagen" hidden>
+
+                <!-- Imagen a mostrar -->
+                <div class="contenedor-imagen">
+                    <img id="vista-previa" src="" alt="Vista previa de tu foto">
                 </div>
             </div>
         </div>
