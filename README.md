@@ -8,3 +8,6 @@ Universidad: Universidad Católica de Salta (UCaSal)
 - TP1:
   - [GitHub](https://github.com/BautistaGenovese/Lenguajes-4/tree/main/TP1)
   - [Pagina Web](https://bautistagenovese.github.io/Lenguajes-4/TP1/index.html)
+- TP2:
+  - [GitHub](https://github.com/BautistaGenovese/Lenguajes-4/tree/main/TP2)
+  - [Pagina Web](https://bautistagenovese.github.io/Lenguajes-4/TP2/dist/index.html)
