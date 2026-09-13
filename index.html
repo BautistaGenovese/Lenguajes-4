@@ -1,99 +1,278 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lenguajes 4 - Bautista Genovese</title>
+    <title>Lenguajes IV — Bautista Genovese</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500;700&family=Inter:wght@400;500&family=Newsreader:ital@1&display=swap"
+        rel="stylesheet">
     <style>
+        :root {
+            --papel: #E9EBE6;
+            --linea: #cfd3cd;
+            --tinta: #14171a;
+            --suave: #4b5058;
+            --acento: #2748ff;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            max-width: 800px;
+            margin: 0;
+            background: var(--papel);
+            color: var(--tinta);
+            font-family: 'Inter', system-ui, sans-serif;
+            background-image: linear-gradient(var(--linea) 1px, transparent 1px), linear-gradient(90deg, var(--linea) 1px, transparent 1px);
+            background-size: 48px 48px;
+        }
+
+        /* estilo mono chico compartido, reutilizado por etiquetas, numeros y links */
+        .etiqueta {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12.5px;
+            color: var(--suave);
+        }
+
+        .pagina {
+            max-width: 760px;
             margin: 0 auto;
-            padding: 2rem;
-            background-color: #f9f9f9;
+            padding: 56px 28px 80px;
         }
-        h1, h2 {
-            color: #2c3e50;
-            border-bottom: 2px solid #eaeaea;
-            padding-bottom: 0.5rem;
+
+        #marca-arriba-izq,
+        #marca-arriba-der,
+        #marca-abajo-izq,
+        #marca-abajo-der {
+            position: fixed;
+            width: 14px;
+            height: 14px;
+            border: 1px solid var(--tinta);
+            opacity: .35;
         }
-        .container {
-            background-color: #fff;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+
+        #marca-arriba-izq {
+            top: 18px;
+            left: 18px;
+            border-right: none;
+            border-bottom: none;
         }
-        ul {
-            list-style-type: none;
-            padding: 0;
+
+        #marca-arriba-der {
+            top: 18px;
+            right: 18px;
+            border-left: none;
+            border-bottom: none;
         }
-        li {
-            margin-bottom: 1rem;
-            padding: 1rem;
-            background-color: #f1f8ff;
-            border-left: 4px solid #0366d6;
-            border-radius: 4px;
+
+        #marca-abajo-izq {
+            bottom: 18px;
+            left: 18px;
+            border-right: none;
+            border-top: none;
         }
-        a {
-            color: #0366d6;
-            text-decoration: none;
-            font-weight: bold;
+
+        #marca-abajo-der {
+            bottom: 18px;
+            right: 18px;
+            border-left: none;
+            border-top: none;
         }
-        a:hover {
-            text-decoration: underline;
+
+        h1 {
+            font: 600 clamp(44px, 9vw, 72px)/1.02 'Fraunces', serif;
+            letter-spacing: -.01em;
+            margin: 40px 0 20px;
         }
-        .tp-links {
-            margin-top: 0.5rem;
+
+        .divisor {
+            height: 1px;
+            background: var(--tinta);
+            margin-bottom: 20px;
+        }
+
+        .detalles {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            column-gap: 24px;
+            row-gap: 6px;
+            max-width: 480px;
+        }
+
+        .detalles .etiqueta {
+            padding-top: 2px;
+        }
+
+        .detalles .valor {
+            margin: 0;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--tinta);
+        }
+
+        .titulo-seccion {
+            margin: 48px 0 14px;
+        }
+
+        .indice {
+            border-top: 1px solid var(--tinta);
+        }
+
+        .item {
+            display: grid;
+            grid-template-columns: 44px 1fr auto;
+            gap: 18px;
+            padding: 26px 0;
+            border-bottom: 1px solid var(--tinta);
+        }
+
+        .item .numero {
+            font-size: 14px;
+            padding-top: 4px;
+        }
+
+        .item h2 {
+            font: 500 26px 'Fraunces', serif;
+            margin: 0 0 6px;
+        }
+
+        .item .descripcion {
+            margin: 0;
+            font: italic 16px 'Newsreader', serif;
+            color: var(--suave);
+            max-width: 46ch;
+        }
+
+        .acciones {
             display: flex;
-            gap: 1rem;
+            flex-direction: column;
+            gap: 8px;
+            align-items: flex-end;
+            padding-top: 4px;
         }
-        .tp-links a {
-            background-color: #0366d6;
-            color: white;
-            padding: 0.3rem 0.8rem;
-            border-radius: 4px;
-            font-size: 0.9rem;
-        }
-        .tp-links a.github {
-            background-color: #24292e;
-        }
-        .tp-links a:hover {
-            opacity: 0.9;
+
+        .acciones a {
+            color: var(--tinta);
             text-decoration: none;
+            white-space: nowrap;
         }
-        .info {
-            margin-bottom: 2rem;
+
+        .acciones a:hover,
+        .acciones a:focus-visible {
+            color: var(--acento);
+        }
+
+        .acciones .principal {
+            background: var(--tinta);
+            color: var(--papel);
+            padding: 6px 10px;
+        }
+
+        .acciones .principal:hover,
+        .acciones .principal:focus-visible {
+            background: var(--acento);
+            color: #fff;
+        }
+
+        a:focus-visible {
+            outline: 2px solid var(--acento);
+            outline-offset: 3px;
+        }
+
+        footer {
+            padding-top: 26px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        footer a {
+            color: var(--suave);
+        }
+
+        footer a:hover,
+        footer a:focus-visible {
+            color: var(--acento);
+        }
+
+        @media (max-width:520px) {
+            .item {
+                grid-template-columns: 32px 1fr;
+            }
+
+            .acciones {
+                grid-column: 1/-1;
+                flex-direction: row;
+                padding-top: 10px;
+            }
         }
     </style>
 </head>
+
 <body>
-    <div class="container">
-        <h1>Lenguajes 4</h1>
-        
-        <div class="info">
-            <p><strong>Alumno:</strong> Bautista Genovese - 46.790.865</p>
-            <p><strong>Universidad:</strong> Universidad Católica de Salta (UCaSal)</p>
+
+    <span id="marca-arriba-izq" aria-hidden="true"></span>
+    <span id="marca-arriba-der" aria-hidden="true"></span>
+    <span id="marca-abajo-izq" aria-hidden="true"></span>
+    <span id="marca-abajo-der" aria-hidden="true"></span>
+
+    <main class="pagina">
+
+        <h1>Lenguajes IV</h1>
+        <div class="divisor"></div>
+        <div class="detalles">
+            <span class="etiqueta">Alumno</span>
+            <p class="valor">Bautista Genovese</p>
+            <span class="etiqueta">Legajo</span>
+            <p class="valor">46.790.865</p>
+            <span class="etiqueta">Universidad</span>
+            <p class="valor">Universidad Católica de Salta (UCASAL)</p>
         </div>
 
-        <h2>Trabajos Prácticos</h2>
-        <ul>
-            <li>
-                <h3>TP1</h3>
-                <div class="tp-links">
-                    <a href="./TP1/index.html">Página Web</a>
-                    <a href="https://github.com/BautistaGenovese/Lenguajes-4/tree/main/TP1" class="github" target="_blank" rel="noopener noreferrer">Ver en GitHub</a>
+        <p class="etiqueta titulo-seccion">Trabajos prácticos</p>
+
+        <div class="indice">
+
+            <div class="item">
+                <span class="etiqueta numero">01</span>
+                <div>
+                    <h2>Geolocalización e imágenes</h2>
+                    <p class="descripcion">Captura de datos geoespaciales en tiempo real y carga dinámica de imágenes.</p>
                 </div>
-            </li>
-            <li>
-                <h3>TP2</h3>
-                <div class="tp-links">
-                    <a href="./TP2/dist/index.html">Página Web</a>
-                    <a href="https://github.com/BautistaGenovese/Lenguajes-4/tree/main/TP2" class="github" target="_blank" rel="noopener noreferrer">Ver en GitHub</a>
+                <div class="acciones">
+                    <a class="etiqueta principal" href="https://bautistagenovese.github.io/Lenguajes-4/TP1/index.html">Página
+                        web</a>
+                    <a class="etiqueta" href="https://github.com/BautistaGenovese/Lenguajes-4/tree/main/TP1">Ver código</a>
                 </div>
-            </li>
-        </ul>
-    </div>
+            </div>
+
+            <div class="item">
+                <span class="etiqueta numero">02</span>
+                <div>
+                    <h2>Aplicación en React</h2>
+                    <p class="descripcion">Interfaz construida como single-page application con React.</p>
+                </div>
+                <div class="acciones">
+                    <a class="etiqueta principal" href="https://bautistagenovese.github.io/Lenguajes-4/TP2/dist/index.html">Página
+                        web</a>
+                    <a class="etiqueta" href="https://github.com/BautistaGenovese/Lenguajes-4/tree/main/TP2">Ver código</a>
+                </div>
+            </div>
+
+        </div>
+
+        <footer>
+            <span class="etiqueta">Repositorio del curso</span>
+            <a class="etiqueta" href="https://github.com/BautistaGenovese/Lenguajes-4">github.com/BautistaGenovese/Lenguajes-4</a>
+        </footer>
+
+    </main>
+
 </body>
+
 </html>

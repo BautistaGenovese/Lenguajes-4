@@ -1,5 +1,3 @@
-const btnCopiarLatitud = document.getElementById('btn-copiar-latitud');
-const btnCopiarLongitud = document.getElementById('btn-copiar-longitud');
 const coordenadas = {
     latitud: null,
     longitud: null,
@@ -8,6 +6,22 @@ const coordenadas = {
 const btnCargar = document.getElementById('btn-cargar');
 const inputSelectorFoto = document.getElementById('selector-foto');
 const vistaPrevia = document.getElementById('vista-previa');
+
+function calcularGrados(decimal, esLatitud) {
+    const direccion = esLatitud 
+        ? (decimal >= 0 ? 'N' : 'S') 
+        : (decimal >= 0 ? 'E' : 'O');
+    
+    const valorAbsoluto = Math.abs(decimal);
+    const grados = Math.floor(valorAbsoluto);
+    
+    const minutosFloat = (valorAbsoluto - grados) * 60;
+    const minutos = Math.floor(minutosFloat);
+    
+    const segundos = Math.round((minutosFloat - minutos) * 60);
+    
+    return `${grados}°${minutos}'${segundos}" ${direccion}`;
+}
 
 function mostrarError(mensaje, contenedorId) {
     if (!contenedorId) return;
@@ -40,7 +54,11 @@ function analizarPosicion() {
             coordenadas.presicion = pos.coords.accuracy;
 
             document.getElementById('valor-latitud').textContent = `${coordenadas.latitud}`;
+            document.getElementById('valor-latitud-grados').textContent = `(${calcularGrados(coordenadas.latitud, true)})`;
+            
             document.getElementById('valor-longitud').textContent = `${coordenadas.longitud}`;
+            document.getElementById('valor-longitud-grados').textContent = `(${calcularGrados(coordenadas.longitud, false)})`;
+
             document.getElementById('valor-presicion').textContent = `${coordenadas.presicion} m`;
         },
         ((err) => mostrarError(err.message, 'error-coordenadas')),
@@ -49,34 +67,6 @@ function analizarPosicion() {
 }
 
 analizarPosicion();
-
-async function copiar(mensaje) {
-    try {
-        await navigator.clipboard.writeText(mensaje);
-    } catch (err) {
-        mostrarError(err);
-    }
-}
-
-btnCopiarLatitud.addEventListener('click', () => {
-    if (coordenadas.latitud) {
-        copiar(coordenadas.latitud);
-        btnCopiarLatitud.style.backgroundColor = 'var(--green)'
-        setTimeout(() => {
-            btnCopiarLatitud.style.backgroundColor = 'var(--white)'
-        }, 3000)
-    }
-})
-
-btnCopiarLongitud.addEventListener('click', () => {
-    if (coordenadas.longitud) {
-        copiar(coordenadas.longitud);
-        btnCopiarLongitud.style.backgroundColor = 'var(--green)'
-        setTimeout(() => {
-            btnCopiarLongitud.style.backgroundColor = 'var(--white)'
-        }, 3000)
-    }
-})
 
 btnCargar.addEventListener('click', () => {
     inputSelectorFoto.click()

@@ -2,7 +2,7 @@ export default function ContenedorPagina({ titulo, archivo, descripcion }){
     return (
         <div className="w-full bg-zinc-950/70 backdrop-blur-sm p-10 sm:p-12 border border-zinc-800/80 shadow-2xl relative">
             {/* Barra de direcciones */}
-            <div className="flex justify-center mb-6">
+            <div className="flex justify-start mb-6">
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded border border-zinc-800 bg-zinc-950 text-[11px] font-mono text-zinc-400" id="badge-pagina">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
                     <span className="text-zinc-500">~/src/pages/</span>
