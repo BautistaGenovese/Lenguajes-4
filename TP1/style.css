@@ -1,15 +1,20 @@
-* {
-    box-sizing: border-box;
-}
-
 :root {
-    --fondo: #f1f5f9;
+    --fondo: #bebebe;
     --blue: #0039cc;
     --black: #000;
     --green: #80EF80;
     --red: #FF746C;
-    --white: #fff;
-    --grey: #9b9b9b;
+    --white: #f6f6f6;
+    --white-hover: #e4e4e4;
+    --grey: #949494;
+}
+
+::selection {
+    background-color: rgba(128, 128, 128, 0.2);
+}
+
+* {
+    box-sizing: border-box;
 }
 
 body {
@@ -23,20 +28,6 @@ body {
     align-items: center;
     justify-content: center;
     padding: 1.5rem;
-}
-
-.container {
-    width: 100%;
-    max-width: 44rem;
-}
-
-.card {
-    background: var(--white);
-    padding: 2rem;
-    box-shadow: 16px 16px 0 0 var(--black);
-    display: flex;
-    flex-direction: column;
-    gap: 2.5rem;
 }
 
 .contenedor {
@@ -62,6 +53,10 @@ body {
     letter-spacing: -0.02em;
 }
 
+.titulo br {
+    display: none;
+}
+
 .encabezado {
     margin: 0.75rem 0;
     font-weight: 800;
@@ -79,8 +74,7 @@ body {
     letter-spacing: 0.18em;
 }
 
-.boton-primario,
-input[type="file"]::file-selector-button {
+.boton-primario {
     width: 100%;
     background: var(--blue);
     color: var(--white);
@@ -99,8 +93,7 @@ input[type="file"]::file-selector-button {
     transition: transform 0.08s ease, box-shadow 0.08s ease, background-color 0.08s ease;
 }
 
-.boton-primario:hover,
-input[type="file"]::file-selector-button:hover {
+.boton-primario:hover {
     transform: translate(4px, 4px);
     box-shadow: 4px 4px 0 0 var(--black);
 }
@@ -119,16 +112,18 @@ input[type="file"]::file-selector-button:hover {
     margin-top: 2rem;
 }
 
-.fila-dato,
-.error-item {
+.item-dato,
+.item-error {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 1rem;
     justify-content: space-between;
+    align-items: center;
     padding: 1.25rem;
     border: 4px solid var(--black);
     background: var(--white);
     box-shadow: 8px 8px 0 0 var(--black);
+    transition: transform 0.08s ease, box-shadow 0.08s ease, background-color 0.08s ease;
 }
 
 .titulo-item {
@@ -137,12 +132,12 @@ input[type="file"]::file-selector-button:hover {
     gap: 0.75rem;
 }
 
-.error-item {
+.item-error {
     color: var(--white);
-    background: var(--red); 
+    background: var(--red);
 }
 
-.error-item div {
+.item-error div {
     display: flex;
     align-items: center;
     gap: 0.75rem;
@@ -151,7 +146,7 @@ input[type="file"]::file-selector-button:hover {
 .etiqueta {
     font-weight: 900;
     text-transform: uppercase;
-    font-size: 1.125rem;
+    font-size: 1.25rem;
 }
 
 .acciones-item {
@@ -160,14 +155,14 @@ input[type="file"]::file-selector-button:hover {
     gap: 1rem;
 }
 
-.valor-mono,
-.valor-mono-grados {
+.valor,
+.valor-grados {
     font-family: 'JetBrains Mono', monospace;
     font-weight: 900;
-    font-size: 1.125rem;
+    font-size: 1.25rem;
 }
 
-.valor-mono-grados{
+.valor-grados {
     color: var(--grey);
 }
 
@@ -199,9 +194,54 @@ input[type="file"]::file-selector-button:hover {
     letter-spacing: 0.18em;
 }
 
-@media (min-width: 640px) {
-    .fila-dato {
-        flex-direction: row;
-        align-items: center;
+@media (max-width: 640px) {
+    .tarjeta {
+        border: 4px solid var(--black);
+        padding: 1.5rem;
+        box-shadow: 12px 12px 0 0 var(--black);
+    }
+
+    .titulo {
+        font-size: 1.75rem;
+    }
+
+    .titulo br {
+        display: inline;
+    }
+
+    .encabezado {
+        font-size: 1.25rem;
+    }
+
+    .subtitulo {
+        font-size: 0.75rem;
+    }
+
+    .subtitulo br {
+        display: none;
+    }
+
+    .etiqueta {
+        font-size: 1rem;
+    }
+
+    .valor,
+    .valor-grados {
+        font-size: 1rem;
+    }
+
+    .item-error,
+    .item-dato {
+        flex-direction: column;
+        align-items: start;
+        gap: 0.5rem;
+        padding: 0.9rem;
+    }
+
+    .acciones-item {
+        justify-content: start;
+        align-items: start;
+        flex-direction: column;
+        gap: 0.2rem;
     }
 }

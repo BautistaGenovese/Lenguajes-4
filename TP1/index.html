@@ -20,7 +20,7 @@
     <main class="contenedor">
         <div class="tarjeta">
             <div>
-                <h2 class="titulo">Lenguajes IV: TP 1</h2>
+                <h2 class="titulo">Lenguajes IV: <br />TP 1</h2>
                 <h3 class="encabezado">Bautista Genovese - 46.790.865</h3>
                 <p class="subtitulo">
                     Obtenga datos geoespaciales con precisión <br />
@@ -34,40 +34,40 @@
                 <h3 class="encabezado">Datos geoespaciales</h3>
 
                 <!-- Fila: Error -->
-                <div class="error-item oculto" id="error-coordenadas">
+                <div class="item-error oculto" id="error-coordenadas">
                 </div>
 
                 <!-- Fila: Latitud -->
-                <div class="fila-dato">
+                <div class="item-dato">
                     <div class="titulo-item">
                         <span aria-hidden="true" class="material-symbols-outlined icono-grande">explore</span>
                         <span class="etiqueta">Latitud</span>
                     </div>
                     <div class="acciones-item">
-                        <span class="valor-mono" id="valor-latitud">--</span>
-                        <span class="valor-mono-grados" id="valor-latitud-grados">(--)</span>
+                        <span class="valor" id="valor-latitud">--</span>
+                        <span class="valor-grados" id="valor-latitud-grados">(--)</span>
                     </div>
                 </div>
 
                 <!-- Fila: Longitud -->
-                <div class="fila-dato">
+                <div class="item-dato">
                     <div class="titulo-item">
                         <span aria-hidden="true" class="material-symbols-outlined icono-grande">public</span>
                         <span class="etiqueta">Longitud</span>
                     </div>
                     <div class="acciones-item">
-                        <span class="valor-mono" id="valor-longitud">--</span>
-                        <span class="valor-mono-grados" id="valor-longitud-grados">(--)</span>
+                        <span class="valor" id="valor-longitud">--</span>
+                        <span class="valor-grados" id="valor-longitud-grados">(--)</span>
                     </div>
                 </div>
 
                 <!-- Fila: Presición -->
-                <div class="fila-dato">
+                <div class="item-dato">
                     <div class="titulo-item">
                         <span aria-hidden="true" class="material-symbols-outlined icono-grande">target</span>
                         <span class="etiqueta">Precisión</span>
                     </div>
-                    <span class="valor-mono" id="valor-presicion">-- m</span>
+                    <span class="valor" id="valor-presicion">-- m</span>
                 </div>
             </div>
 
@@ -77,7 +77,7 @@
                 <h3 class="encabezado">Carga y muestreo de imagenes</h3>
 
                 <!-- Error -->
-                <div class="error-item oculto" id="error-imagen">
+                <div class="item-error oculto" id="error-imagen">
                 </div>
 
                 <!-- Boton para cargar imagen -->
@@ -92,7 +92,7 @@
 
                 <!-- Imagen a mostrar -->
                 <div class="contenedor-imagen">
-                    <img id="vista-previa" src="" alt="Vista previa de tu foto">
+                    <img id="vista-previa" src="" alt="Vista previa">
                 </div>
             </div>
         </div>
