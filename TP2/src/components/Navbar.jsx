@@ -24,7 +24,8 @@ export default function Navbar({ paginaActual, setPaginaActual }) {
     }, [paginaActual]);
 
     return (
-        <nav className="relative inline-flex items-center gap-1 bg-zinc-950 p-1.5 rounded-full border border-zinc-800/80 font-mono text-xs">
+        <nav className="fixed top-8 inline-flex  z-50 items-center gap-1 bg-zinc-950/70 backdrop-blur-md p-1.5 rounded-full border border-zinc-800/80 font-mono text-xs shadow-2xl">
+
             {/* Pastilla deslizante */}
             <span
                 className="absolute top-1.5 bottom-1.5 left-0 bg-white rounded-full transition-all duration-300 ease-out shadow-sm pointer-events-none"

@@ -36,7 +36,7 @@ export default function Contacto() {
                     <Input
                         type="text"
                         label="nombreApellido"
-                        placeHolder="Ingresá tu nombre y apellido..."
+                        placeHolder="Ingresar nombre y apellido"
                         error={errors.nombreApellido}
                         {...register("nombreApellido", {
                             required: "[ERR_REQUIRED_NAME]: Se debe ingresar un nombre y apellido.",
@@ -64,7 +64,7 @@ export default function Contacto() {
                     <Input
                         type="text"
                         label="mensaje"
-                        placeHolder="Escribí tu mensaje acá..."
+                        placeHolder="Escribí tu mensaje acá ..."
                         optional={true}
                         error={errors.mensaje}
                         {...register("mensaje", {

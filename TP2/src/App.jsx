@@ -17,7 +17,7 @@ export default function App() {
           <Navbar paginaActual={paginaActual} setPaginaActual={setPaginaActual} />
         </header>
 
-        <main className="w-full max-w-2xl mx-auto md:mb-auto px-6 py-12 flex flex-col items-center">
+        <main className="w-full max-w-2xl mx-auto md:mb-auto md:px-6 py-12 flex flex-col items-center">
           <Routes>
             <Route path="/" element={<Navigate to="/inicio" replace />} />
             <Route path="/inicio" element={<Inicio />} />
