@@ -4,6 +4,7 @@ import Inicio from './pages/Inicio.jsx'
 import Servicios from './pages/Servicios.jsx'
 import Contacto from './pages/Contacto.jsx'
 import Navbar from './components/Navbar.jsx'
+import NotFound from './pages/NotFound.jsx';
 
 export default function App() {
   const [paginaActual, setPaginaActual] = useState('inicio');
@@ -22,6 +23,7 @@ export default function App() {
             <Route path="/inicio" element={<Inicio />} />
             <Route path="/servicios" element={<Servicios />} />
             <Route path="/contacto" element={<Contacto />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
 
