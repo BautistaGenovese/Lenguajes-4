@@ -3,7 +3,7 @@ import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Inicio from './pages/Inicio.jsx'
 import Servicios from './pages/Servicios.jsx'
 import Contacto from './pages/Contacto.jsx'
-import Navbar from './components/Navbar.jsx'
+import Navbar, { NavbarCyberpunk } from './components/Navbar.jsx'
 import NotFound from './pages/NotFound.jsx';
 
 export default function App() {
@@ -11,11 +11,9 @@ export default function App() {
 
   return (
     <HashRouter>
-      <div className="min-h-screen bg-[#050505] bg-grid text-zinc-300 flex flex-col justify-between md:justify-evenly p-6 sm:p-8 selection:bg-zinc-300 selection:text-[#050505]">
+      <div className="min-h-screen bg-cyber-screen text-zinc-300 flex flex-col justify-between md:justify-evenly selection:bg-zinc-300 selection:text-[#050505]">
 
-        <header className="w-full max-w-xl mx-auto py-3 flex flex-col items-center">
-          <Navbar paginaActual={paginaActual} setPaginaActual={setPaginaActual} />
-        </header>
+        <NavbarCyberpunk paginaActual={paginaActual} setPaginaActual={setPaginaActual} />
 
         <main className="w-full max-w-2xl mx-auto md:mb-auto md:px-6 py-12 flex flex-col items-center">
           <Routes>

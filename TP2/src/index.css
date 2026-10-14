@@ -1,10 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Rajdhani:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
-.bg-grid {
-  background-size: 32px 32px;
-  background-image:
-    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+/* Paleta Cyberpunk 2077: fondo oscuro, rojo de navegación y cian de selección. */
+@theme {
+  --font-cyber: "Rajdhani", "Arial Narrow", sans-serif;
+  --font-body: "Inter", Arial, sans-serif;
+
+  --color-cyber-void: #08090d;
+  --color-cyber-bg: #0d1016;
+  --color-cyber-panel: #151820;
+  --color-cyber-panel-raised: #1d222b;
+
+  --color-cyber-red: #ff4655;
+  --color-cyber-red-dim: #a62e43;
+  --color-cyber-cyan: #5ce1e6;
+  --color-cyber-cyan-dim: #168c98;
+
+  --color-cyber-yellow: #fcee0a;
+  --color-cyber-green: #35f2a0;
+  --color-cyber-purple: #a987ff;
+
+  --color-cyber-text: #f2f1ed;
+  --color-cyber-muted: #9299a2;
+  --color-cyber-line: #343a45;
+}
+
+.bg-cyber-screen {
+  background-image: linear-gradient(
+    to bottom,
+    #31101B 0%,
+    #1B0A12 20%,
+    #05040C 52%,
+    #06070C 100%
+  );
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 html {
