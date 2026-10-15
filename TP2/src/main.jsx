@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
 
+// Muestra la aplicacion dentro del contenedor root
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <App />

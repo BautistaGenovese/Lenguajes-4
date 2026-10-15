@@ -1,5 +1,6 @@
 const VITE_RAWG_API_KEY = import.meta.env.VITE_RAWG_API_KEY;
 
+// Juegos elegidos para el catalogo inicial
 const elegidos = [
     "cyberpunk-2077",            // Cyberpunk 2077
     "grand-theft-aito-vi",       // GTA VI
@@ -35,28 +36,55 @@ const elegidos = [
 
 export default async function obtenerJuegos() {
     const juegosCache = sessionStorage.getItem("juegosElegidos");
-    
+
     // Si hay juegos en caché los retorna
     if (juegosCache) {
-        return JSON.parse(juegosCache);
+        try {
+            return JSON.parse(juegosCache);
+        } catch {
+            // Si la cache esta dañada, vuelve a consultar la API
+            sessionStorage.removeItem("juegosElegidos");
+        }
     }
-    
+
+    // Consulta los juegos al mismo tiempo
     const juegos = await Promise.all(
         elegidos.map(async (slug) => {
             const respuesta = await fetch(
                 `https://api.rawg.io/api/games/${slug}?key=${VITE_RAWG_API_KEY}`
             );
-            
+
             if (!respuesta.ok) {
                 throw new Error(`No se pudo cargar ${slug}`);
             }
-            
+
             return respuesta.json();
         })
     );
-    
+
     // Guardamos los datos en la caché
     sessionStorage.setItem("juegosElegidos", JSON.stringify(juegos));
 
     return juegos;
+}
+
+// Busca otros juegos por nombre y devuelve hasta 20 resultados
+export async function buscarJuegos(nombre, signal) {
+    const parametros = new URLSearchParams({
+        key: VITE_RAWG_API_KEY,
+        search: nombre,
+        page_size: "20",
+    });
+
+    const respuesta = await fetch(
+        `https://api.rawg.io/api/games?${parametros}`, { signal }
+    );
+
+    if (!respuesta.ok) {
+        throw new Error("No se pudieron buscar los juegos.");
+    }
+
+    const datos = await respuesta.json();
+
+    return datos.results;
 }

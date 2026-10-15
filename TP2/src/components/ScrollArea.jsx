@@ -1,15 +1,24 @@
 import { useEffect, useId, useRef, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
+// Espacio que deja la barra arriba y abajo
 const RAIL_INSET = 24;
 
 export default function ScrollArea({ children, className = '' }) {
   const viewport = useRef(null);
   const dragOffset = useRef(null);
   const id = useId();
+  const { pathname } = useLocation();
   const [bar, setBar] = useState({ height: 0, top: 0, progress: 0, visible: false });
+
+  // Vuelve arriba al cambiar de pagina
+  useEffect(() => {
+    viewport.current.scrollTop = 0;
+  }, [pathname]);
 
   useEffect(() => {
     const element = viewport.current;
+    // Calcula el tamaño y la posicion de la barra
     function measure() {
       const height = element.clientHeight;
       const maxScroll = element.scrollHeight - height;
@@ -18,6 +27,7 @@ export default function ScrollArea({ children, className = '' }) {
       const progress = maxScroll > 0 ? element.scrollTop / maxScroll : 0;
       setBar({ height: thumbHeight, top: progress * (railHeight - thumbHeight), progress, visible: maxScroll > 1 && railHeight > 0 });
     }
+    // Actualiza la barra cuando cambia el contenido o la ventana
     const observer = new ResizeObserver(measure);
     observer.observe(element);
     observer.observe(element.firstElementChild);
@@ -29,6 +39,7 @@ export default function ScrollArea({ children, className = '' }) {
     };
   }, []);
 
+  // Mueve el contenido segun la posicion del mouse
   function moveTo(pointerY, rail) {
     const element = viewport.current;
     const travel = rail.clientHeight - bar.height;
@@ -38,6 +49,7 @@ export default function ScrollArea({ children, className = '' }) {
     element.scrollTop = progress * (element.scrollHeight - element.clientHeight);
   }
 
+  // Permite arrastrar la barra con el mouse
   function startDrag(event) {
     if (event.button !== 0) return;
     event.preventDefault();
@@ -50,6 +62,7 @@ export default function ScrollArea({ children, className = '' }) {
     moveTo(event.clientY, rail);
   }
 
+  // Permite usar la barra con las flechas del teclado
   function handleKey(event) {
     const element = viewport.current;
     const positions = {

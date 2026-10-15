@@ -1,3 +1,4 @@
+// Datos del trabajo y enlace al repositorio
 export default function Footer() {
     return (
         <footer className="w-full px-2 md:px-6 font-cyber">

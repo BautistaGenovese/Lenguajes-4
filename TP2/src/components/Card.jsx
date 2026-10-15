@@ -1,3 +1,4 @@
+// Tarjeta de un servicio
 export function CardServicio({ servicio }) {
 
     const nomServicio = servicio.nombre;
@@ -50,6 +51,7 @@ export function CardServicio({ servicio }) {
 
 }
 
+// Tarjeta con los datos de un juego de RAWG
 export function CardJuego({ juego }) {
     const nomJuego = juego.name              // Nombre
     const relJuego = juego.released          // Fecha de lanzamiento
@@ -102,7 +104,7 @@ export function CardJuego({ juego }) {
                     <span className="uppercase text-cyber-green font-semibold">Valoración de usuarios</span>
                     <p className="text-cyber-cyan pl-1">
                         {valoraciones > 0 && rtgJuego != null
-                            ? `${rtgJuego} / ${juego.rating_top || 5} · ${valoraciones} valoraciones`
+                            ? `${rtgJuego} / 5 · ${valoraciones} valoraciones`
                             : "Sin valoraciones"}
                     </p>
                 </div>

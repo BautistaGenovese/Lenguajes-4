@@ -1,13 +1,28 @@
-export default function Input({ label, type, optional, placeHolder, error, multiline = false, ...rest }) {
+import Boton from './Boton';
+
+export default function Input({ label, type, optional, placeHolder, error, multiline = false, variant = 'default', actionDisabled = false, ...rest }) {
     const inputId = rest.id ?? rest.name ?? label;
     const errorId = `${inputId}-error`;
     const Field = multiline ? 'textarea' : 'input';
+    // Input de busqueda con su boton de envio
+    if (variant === 'search') {
+        return (
+            <div className="game-search-field font-cyber">
+                <label htmlFor={inputId} className="sr-only">{label}</label>
+                <div className="game-search-bar">
+                    <input {...rest} id={inputId} type={type ?? 'search'}
+                        placeholder={placeHolder} className="game-search-input" />
+                    <Boton variant="search" type="submit" disabled={actionDisabled} aria-label={label} />
+                </div>
+            </div>
+        );
+    }
     return (
-        <div className="group font-cyber" data-purpose="form-group-name">
+        <div className="font-cyber">
 
             {/* Titulo del Input */}
             <div className="flex items-center justify-between gap-3 text-sm tracking-wider">
-                <label htmlFor={inputId} className={`${error ? 'text-cyber-red' : 'text-cyber-red group-focus-within:text-cyber-red'} flex items-center gap-1.5 uppercase transition-colors duration-200`}>
+                <label htmlFor={inputId} className="text-cyber-red uppercase">
                     {label}
                 </label>
                 <span className="text-xs text-cyber-muted uppercase">
@@ -31,12 +46,9 @@ export default function Input({ label, type, optional, placeHolder, error, multi
 
             {/* Mensaje de Error */}
             {error?.message && (
-                <div>
-                    {/* Un toque de animación para que el mensaje de error aparezca con estilo */}
-                    <p id={errorId} role="alert" className="text-xs text-cyber-red flex items-center gap-1 mt-1">
+                    <p id={errorId} role="alert" className="text-xs text-cyber-red mt-1">
                         <span className="font-bold">{error.message}</span>
                     </p>
-                </div>
             )}
         </div>
     );

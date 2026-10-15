@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 
+// Pagina que se muestra cuando la ruta no existe
 export default function NotFound() {
     return (
         <section aria-labelledby="error-title" className="w-full max-w-3xl p-6 md:p-10">

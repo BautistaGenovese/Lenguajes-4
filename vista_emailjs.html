@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mensaje de contacto</title>
+</head>
+<body style="margin:0; padding:0; background-color:#ffffff;">
+    <!-- Copiar esta tabla completa en el editor HTML de la plantilla de EmailJS.
+         La estructura y los estilos esenciales no dependen del bloque head.
+         Las fuentes instaladas se usan primero; Arial es la alternativa para correo. -->
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#ffffff" style="width:100%; border-collapse:collapse; background-color:#ffffff;">
+        <tr>
+            <td align="center" style="padding:28px 12px;">
+                <table role="presentation" width="440" cellpadding="0" cellspacing="0" border="0" style="width:100%; max-width:440px; border-collapse:collapse;">
+                    <tr>
+                        <td width="40" bgcolor="#c15f5c" style="width:40px; background-color:#c15f5c; font-size:1px; line-height:1px;">&nbsp;</td>
+                        <td width="2" bgcolor="#ffffff" style="width:2px; background-color:#ffffff; font-size:1px; line-height:1px;">&nbsp;</td>
+                        <td bgcolor="#47363b" style="background-color:#47363b; border:2px solid #ff4655; font-family:Rajdhani,'Arial Narrow',Arial,sans-serif; color:#ff4655; text-shadow:0 0 1px currentColor, 0 0 4px #ff4655;">
+                            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%; border-collapse:collapse;">
+                                <tr>
+                                    <td style="padding:18px 22px 14px;">
+                                        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%; border-collapse:collapse;">
+                                            <tr>
+                                                <!-- PNG transparente del SVG original. Publicar el asset en GitHub Pages antes de enviar. -->
+                                                <td width="40" valign="middle" style="width:40px; color:#ff4655; font-family:Arial,sans-serif; font-size:36px; line-height:40px;"><img src="https://bautistagenovese.github.io/Lenguajes-4/TP2/dist/images/arasaka-email.png" width="32" height="32" alt="Arasaka" border="0" style="display:block; width:32px; height:32px; border:0; color:#ff4655; font-size:10px;"></td>
+                                                <td align="right" valign="middle" style="color:#ff4655; font-family:'Courier New',monospace; font-size:17px; line-height:24px;">░▒▒░▒░░▒░░▒▒░▒░</td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding:12px 20px 0;">
+                                        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%; table-layout:fixed; border-collapse:collapse;">
+                                            <tr><td style="padding:0 0 8px; color:#ff4655; font-size:13px; line-height:18px; text-transform:uppercase;">Nombre</td></tr>
+                                            <tr><td style="padding:0 8px 6px; border-bottom:2px solid #ff4655; color:#fcee0a; font-size:16px; line-height:22px; overflow-wrap:break-word; word-wrap:break-word; text-transform:uppercase;">{{nombreApellido}}</td></tr>
+                                            <tr><td style="padding:16px 0 8px; color:#ff4655; font-size:13px; line-height:18px; text-transform:uppercase;">Email</td></tr>
+                                            <tr><td style="padding:0 8px 6px; border-bottom:2px solid #ff4655; color:#5ce1e6; font-size:16px; line-height:22px; overflow-wrap:break-word; word-wrap:break-word; word-break:break-all;"><a href="mailto:{{email}}" style="color:#5ce1e6; text-decoration:none;">{{email}}</a></td></tr>
+                                            <tr><td style="padding:16px 0 8px; color:#ff4655; font-size:13px; line-height:18px; text-transform:uppercase;">Origen</td></tr>
+                                            <tr><td style="padding:0 8px 6px; border-bottom:2px solid #ff4655; color:#35f2a0; font-size:15px; line-height:22px; overflow-wrap:break-word; word-wrap:break-word;"><a href="https://bautistagenovese.github.io/Lenguajes-4/TP2/dist/index.html#/inicio" target="_blank" style="color:#35f2a0; text-decoration:none;">GITHUB: BautistaGenovese/Lenguajes-4</a></td></tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding:32px 20px 26px;">
+                                        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%; table-layout:fixed; border-collapse:collapse;">
+                                            <tr><td style="padding:0 0 6px; color:#ff4655; font-size:13px; line-height:18px; text-transform:uppercase;">Mensaje</td></tr>
+                                            <tr><td style="color:#a987ff; font-size:16px; line-height:23px; white-space:pre-wrap; overflow-wrap:break-word; word-wrap:break-word; text-transform:uppercase;">{{mensaje}}</td></tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="border-top:2px solid #ff4655;">
+                                        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%; border-collapse:collapse;">
+                                            <tr>
+                                                <td valign="middle" style="padding:8px; border-right:2px solid #ff4655; color:#ff4655; font-size:10px; line-height:14px; text-transform:uppercase;">Lenguajes IV - TP3<br>Bautista Genovese<br>Reporte generado por EmailJS</td>
+                                                <td width="100" align="center" valign="middle" style="width:100px; padding:8px 0; color:#ff4655; font-family:'Arial Black',Arial,sans-serif; font-weight:900; font-size:30px; line-height:34px; letter-spacing:2px;">JS</td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
+
+

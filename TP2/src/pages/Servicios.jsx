@@ -1,6 +1,7 @@
 import { CardServicio } from "../components/Card";
 import Seccion from "../components/Seccion";
 
+// Servicios que se muestran en las tarjetas
 const servicios = [
     {
         id: 1,
@@ -108,6 +109,7 @@ export default function Servicios() {
     return (
         <div className="w-full">
             <h1 className="text-3xl md:text-4xl font-cyber font-semibold text-cyber-yellow px-3 py-1 mb-2">Servicios</h1>
+            {/* Lista de servicios */}
             <Seccion
                 titulo="Catálogo y descripción de servicios ofrecidos."
                 className="grid grid-cols-1 md:grid-cols-2"

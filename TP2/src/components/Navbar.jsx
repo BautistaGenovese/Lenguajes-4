@@ -1,8 +1,14 @@
-import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { NavLink } from 'react-router-dom';
 
-export default function Navbar({ paginaActual, setPaginaActual }) {
-    const navigate = useNavigate();
-    const ahora = new Date();
+export default function Navbar() {
+    const [ahora, setAhora] = useState(new Date());
+
+    // Actualiza la hora sin recargar la pagina
+    useEffect(() => {
+        const reloj = setInterval(() => setAhora(new Date()), 1000);
+        return () => clearInterval(reloj);
+    }, []);
 
     const enlaces = [
         { id: 'inicio', route: '/inicio' },
@@ -11,8 +17,9 @@ export default function Navbar({ paginaActual, setPaginaActual }) {
     ];
 
     return (
-        <nav className="fixed inset-x-0 top-0 z-50 flex h-12 md:h-16 gap-1 justify-center items-end bg-cyber-void/65 backdrop-blur-md px-3 py-0 font-cyber text-md md:text-lg font-medium">
-            <div className='mx-auto py-auto px-4 py-1.5 grow border-b border-cyber-red-dim'>
+        <nav aria-label="Navegación principal" className="fixed inset-x-0 top-0 z-50 flex h-12 md:h-16 gap-1 justify-center items-end bg-cyber-void/65 backdrop-blur-md px-3 font-cyber text-base md:text-lg font-medium">
+            {/* Nombre y barra decorativa */}
+            <div className='hidden md:block mx-auto px-4 py-1.5 grow border-b border-cyber-red-dim'>
                 <div className='hidden md:flex flex-col text-cyber-green'>
                     <div className='flex gap-2 items-end justify-start'>
                         <h2 className='text-2xl'>LENGUAJES</h2><span>IV</span>
@@ -27,28 +34,26 @@ export default function Navbar({ paginaActual, setPaginaActual }) {
                     </div>
                 </div>
             </div>
+            {/* Enlaces a las paginas */}
             <div className='flex flex-row gap-1'>
                 {enlaces.map((enlace) => (
-                    <button
+                    <NavLink
                         key={enlace.id}
-                        onClick={() => {
-                            navigate(enlace.route);
-                            setPaginaActual(enlace.id);
-                        }}
-                        type="button"
-                        className={`px-4 py-1.5 border-b-2 min-w-25 md:min-w-28 transition-colors duration-200 cursor-pointer uppercase ${paginaActual === enlace.id
+                        to={enlace.route}
+                        className={({ isActive }) => `text-center px-3 md:px-4 py-1.5 border-b-2 min-w-23 md:min-w-28 transition-colors duration-200 uppercase ${isActive
                             ? 'text-cyber-cyan border-cyber-cyan'
                             : 'text-cyber-red-dim hover:text-cyber-cyan border-cyber-red-dim'
                             }`}
                     >
                         {enlace.id}
-                    </button>
+                    </NavLink>
                 ))}
             </div>
-            <div className='mx-auto px-4 py-1.5 grow text-xl border-b border-cyber-red-dim'>
+            {/* Hora y fecha */}
+            <div className='hidden md:block mx-auto px-4 py-1.5 grow text-xl border-b border-cyber-red-dim'>
                 <div className='hidden md:flex gap-3 items-center italic justify-end'>
-                    <span className='text-cyber-red-dim'>{ahora.getHours()}<span className='text-cyber-red animate-blink'>:</span>{ahora.getMinutes()}</span>
-                    <span className='text-cyber-red-dim'>{ahora.getDate()}<span className='text-cyber-red'>/</span>{ahora.getMonth()}<span className='text-cyber-red'>/</span>{ahora.getFullYear().toString().slice(-2)}</span>
+                    <span className='text-cyber-red-dim'>{String(ahora.getHours()).padStart(2, '0')}<span className='text-cyber-red animate-blink'>:</span>{String(ahora.getMinutes()).padStart(2, '0')}</span>
+                    <span className='text-cyber-red-dim'>{ahora.getDate()}<span className='text-cyber-red'>/</span>{ahora.getMonth() + 1}<span className='text-cyber-red'>/</span>{ahora.getFullYear().toString().slice(-2)}</span>
                 </div>
             </div>
         </nav>

@@ -6,8 +6,16 @@ import { enviarMensajeContacto } from "../services/emailService";
 import Seccion from "../components/Seccion";
 
 export default function Contacto() {
-    const { register, handleSubmit, reset, formState: { errors } } = useForm();
+    // Validacion y estado del formulario
+    const { register, handleSubmit, reset, formState: { errors, isSubmitting } } = useForm();
     const [estado, setEstado] = useState(null);
+    // Oculta el resultado del envio despues de cuatro segundos
+    useEffect(() => {
+        if (estado !== 'enviado' && estado !== 'error') return;
+        const temporizador = setTimeout(() => setEstado(null), 4000);
+        return () => clearTimeout(temporizador);
+    }, [estado]);
+    // Ajusta el zoom del mapa segun el tamaño de la pantalla
     const [mapZoom, setMapZoom] = useState(() =>
         window.matchMedia('(min-width: 768px)').matches ? 13.9 : 12.5
     );
@@ -20,20 +28,17 @@ export default function Contacto() {
         return () => media.removeEventListener('change', actualizarZoom);
     }, []);
 
-    const onSubmit = (datos) => {
+    // Envia los datos a EmailJS y limpia los campos si sale bien
+    const onSubmit = async (datos) => {
+        if (isSubmitting) return;
         setEstado('cargando');
-
-        enviarMensajeContacto(datos)
-            .then(() => {
-                setEstado('enviado');
-                reset();
-                setTimeout(() => setEstado(null), 4000);
-            })
-            .catch((err) => {
-                setEstado('error');
-                console.error('Error:', err);
-                setTimeout(() => setEstado(null), 4000);
-            });
+        try {
+            await enviarMensajeContacto(datos);
+            setEstado('enviado');
+            reset();
+        } catch {
+            setEstado('error');
+        }
     };
 
     return (
@@ -45,7 +50,8 @@ export default function Contacto() {
                 className="flex flex-col-reverse md:flex-row w-full gap-4"
             >
                 <div className="flex-1 md:my-auto">
-                    <form onSubmit={handleSubmit(onSubmit)}>
+                    {/* Formulario de contacto */}
+                    <form onSubmit={handleSubmit(onSubmit)} noValidate>
                         <div className="flex flex-col gap-3">
                             <Input
                                 type="text"
@@ -69,7 +75,7 @@ export default function Contacto() {
                                 {...register("email", {
                                     required: "El correo electrónico es obligatorio.",
                                     pattern: {
-                                        value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
+                                        value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
                                         message: "Formato de correo electrónico no válido"
                                     }
                                 })}
@@ -90,17 +96,18 @@ export default function Contacto() {
                             />
 
                             {estado === 'error' && (
-                                <p className="text-[11px] text-cyber-red font-cyber flex items-center gap-1">
-                                    <span className="font-bold">&gt;&gt; [ERR_SEND_FAILED]: Ocurrió un error al despachar el mensaje. Reintentá.</span>
+                                <p role="alert" className="text-[11px] text-cyber-red font-cyber flex items-center gap-1">
+                                    <span className="font-bold">Ocurrió un error al despachar el mensaje. Reintentá.</span>
                                 </p>
                             )}
 
                             <div className="pt-2">
-                                <Boton largo type="submit">Enviar datos</Boton>
+                                <Boton largo type="submit" estado={estado} disabled={isSubmitting}>Enviar datos</Boton>
                             </div>
                         </div>
                     </form>
                 </div>
+                {/* Mapa de la ciudad */}
                 <div className="flex-1 min-w-0 mb-4">
                     <h3 className="uppercase text-cyber-green font-semibold md:text-end">Mapa de la Ciudad</h3>
                     <div className="border-cyberpunk-red-dim w-full p-px"><div className="h-80 md:h-96 [clip-path:polygon(0_0,100%_0,100%_calc(100%-12px),calc(100%-12px)_100%,0_100%)]">
