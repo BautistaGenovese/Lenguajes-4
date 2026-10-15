@@ -38,6 +38,82 @@
   background-size: cover;
 }
 
+@utility border-cyberpunk-red-dim {
+  position: relative;
+  isolation: isolate;
+  background-color: transparent;
+  --cyberpunk-border-color: var(--color-cyber-red-dim);
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-color: transparent;
+    border-left: 1px solid var(--cyberpunk-border-color);
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%);
+    transition: background-color 180ms ease;
+  }
+  
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-color: var(--cyberpunk-border-color);
+    /* Contorno de 1 px y corte fijo: no se estiran con el ancho. */
+    clip-path: polygon(
+      0 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 0,
+      1px 1px, 1px calc(100% - 1px), calc(100% - 12.414px) calc(100% - 1px),
+      calc(100% - 1px) calc(100% - 12.414px), calc(100% - 1px) 1px, 1px 1px
+    );
+    transition: background-color 180ms ease;
+  }
+  
+  &:hover {
+    --cyberpunk-border-color: var(--color-cyber-red);
+  }
+
+  &:hover::after {
+    background-color: color-mix(in srgb, var(--color-cyber-red-dim) 24%, transparent);
+  }
+}
+
+.cyber-input-frame {
+  --input-line: var(--color-cyber-red-dim);
+  position: relative;
+  background-color: transparent;
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%);
+  transition: background-color 180ms ease;
+}
+
+/* Dos contornos en sentidos opuestos dejan el centro transparente. */
+.cyber-input-frame::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-color: var(--input-line);
+  clip-path: polygon(
+    0 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 0,
+    1px 1px, 1px calc(100% - 1px), calc(100% - 12.414px) calc(100% - 1px),
+    calc(100% - 1px) calc(100% - 12.414px), calc(100% - 1px) 1px, 1px 1px
+  );
+  transition: background-color 180ms ease;
+}
+
+.cyber-input-frame:hover,
+.cyber-input-frame:focus-within {
+  --input-line: var(--color-cyber-red);
+  background-color: color-mix(in srgb, var(--color-cyber-red-dim) 24%, transparent);
+}
+
+.cyber-input-frame[data-invalid="true"] {
+  --input-line: var(--color-cyber-red);
+  background-color: color-mix(in srgb, var(--color-cyber-red) 12%, transparent);
+}
+
 html {
   scrollbar-gutter: stable;
   background-color: #050505;

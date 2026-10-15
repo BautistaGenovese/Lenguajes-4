@@ -1,4 +1,5 @@
 import { ContenedorPagina } from "../components/Contenedores";
+import Boton from "../components/Boton";
 
 export default function Inicio() {
     return (
@@ -6,6 +7,9 @@ export default function Inicio() {
             titulo="Inicio"
             archivo="Inicio"
             descripcion="Bienvenido a la página principal del sitio."
-        />
+        >
+            <Boton>Hola</Boton>
+
+        </ContenedorPagina>
     );
 }

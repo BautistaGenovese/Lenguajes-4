@@ -1,9 +1,10 @@
 import { ContenedorPagina } from "../components/Contenedores";
 import Input from "../components/Input";
-import BotonEnviar from "../components/BotonEnviar";
+import Boton from "../components/Boton";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { enviarMensajeContacto } from "../services/emailService";
+import Seccion from "../components/Seccion";
 
 export default function Contacto() {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
@@ -32,17 +33,17 @@ export default function Contacto() {
             descripcion="Canales y vías de comunicación directa."
         >
             <form onSubmit={handleSubmit(onSubmit)}>
-                <div className="flex flex-col border border-neutral-800/90 p-6 mt-3 bg-black/50 gap-6">
+                <Seccion style="flex flex-col gap-3">
                     <Input
                         type="text"
-                        label="nombreApellido"
+                        label="Nombre y Apellido"
                         placeHolder="Ingresar nombre y apellido"
                         error={errors.nombreApellido}
                         {...register("nombreApellido", {
-                            required: "[ERR_REQUIRED_NAME]: Se debe ingresar un nombre y apellido.",
+                            required: "Se debe ingresar un nombre y apellido.",
                             minLength: {
                                 value: 3,
-                                message: "[ERR_NAME_TOO_SHORT]: El nombre debe contener al menos 3 caracteres."
+                                message: "El nombre debe contener al menos 3 caracteres."
                             }
                         })}
                     />
@@ -53,16 +54,16 @@ export default function Contacto() {
                         placeHolder="tu.email@dominio.com"
                         error={errors.email}
                         {...register("email", {
-                            required: "[ERR_REQUIRED_EMAIL]: El correo electrónico es obligatorio.",
+                            required: "El correo electrónico es obligatorio.",
                             pattern: {
                                 value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
-                                message: "[ERR_INVALID_EMAIL]: Formato de correo electrónico no válido"
+                                message: "Formato de correo electrónico no válido"
                             }
                         })}
                     />
 
                     <Input
-                        type="text"
+                        multiline
                         label="mensaje"
                         placeHolder="Escribí tu mensaje acá ..."
                         optional={true}
@@ -70,7 +71,7 @@ export default function Contacto() {
                         {...register("mensaje", {
                             maxLength: {
                                 value: 300,
-                                message: "[ERR_MAX_LENGTH_EXCEEDED]: El mensaje excede el límite máximo de 300 caracteres."
+                                message: "El mensaje excede el límite máximo de 300 caracteres."
                             }
                         })}
                     />
@@ -82,9 +83,11 @@ export default function Contacto() {
                     )}
 
                     <div className="pt-2">
-                        <BotonEnviar estado={estado} />
+                        {/* <BotonEnviar estado={estado} /> */}
+                        <Boton largo type="submit">Enviar datos</Boton>
                     </div>
-                </div>
+
+                </Seccion>
             </form>
         </ContenedorPagina>
     );
