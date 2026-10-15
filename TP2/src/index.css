@@ -17,6 +17,7 @@
   --color-cyber-cyan-dim: #168c98;
 
   --color-cyber-yellow: #fcee0a;
+  --color-cyber-orange: #FA912A;
   --color-cyber-green: #35f2a0;
   --color-cyber-purple: #a987ff;
 
@@ -115,9 +116,62 @@
 }
 
 html {
-  scrollbar-gutter: stable;
   background-color: #050505;
   color-scheme: dark;
+}
+
+.page-scroll {
+  --scrollbar-guide: #682331;
+  position: relative;
+  overflow: hidden;
+}
+
+.page-scroll-viewport {
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 12px;
+  scrollbar-width: none;
+}
+
+.page-scroll-viewport::-webkit-scrollbar {
+  display: none;
+}
+
+.page-scroll-rail {
+  position: absolute;
+  inset-block: var(--scrollbar-inset);
+  right: 0;
+  width: 12px;
+  touch-action: none;
+  cursor: pointer;
+}
+
+.page-scroll-rail::before {
+  content: "";
+  position: absolute;
+  inset-block: 0;
+  left: 5px;
+  width: 2px;
+  background-color: var(--scrollbar-guide);
+}
+
+.page-scroll-thumb {
+  position: absolute;
+  left: 4px;
+  width: 4px;
+  background-color: var(--color-cyber-red);
+}
+
+.page-scroll-rail:hover .page-scroll-thumb,
+.page-scroll-rail:focus-visible .page-scroll-thumb {
+  background-color: var(--color-cyber-cyan);
+}
+
+.page-scroll-viewport:focus-visible,
+.page-scroll-rail:focus-visible {
+  outline: 1px solid var(--color-cyber-cyan);
+  outline-offset: -1px;
 }
 
 

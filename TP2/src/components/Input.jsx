@@ -7,7 +7,7 @@ export default function Input({ label, type, optional, placeHolder, error, multi
 
             {/* Titulo del Input */}
             <div className="flex items-center justify-between gap-3 text-sm tracking-wider">
-                <label htmlFor={inputId} className={`${error ? 'text-cyber-red' : 'text-cyber-red-dim group-focus-within:text-cyber-red'} flex items-center gap-1.5 uppercase transition-colors duration-200`}>
+                <label htmlFor={inputId} className={`${error ? 'text-cyber-red' : 'text-cyber-red group-focus-within:text-cyber-red'} flex items-center gap-1.5 uppercase transition-colors duration-200`}>
                     {label}
                 </label>
                 <span className="text-xs text-cyber-muted uppercase">
