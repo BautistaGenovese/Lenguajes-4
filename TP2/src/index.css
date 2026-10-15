@@ -1,16 +1,177 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Rajdhani:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
-.bg-grid {
-  background-size: 32px 32px;
-  background-image:
-    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+/* Paleta Cyberpunk 2077: fondo oscuro, rojo de navegación y cian de selección. */
+@theme {
+  --font-cyber: "Rajdhani", "Arial Narrow", sans-serif;
+  --font-body: "Inter", Arial, sans-serif;
+
+  --color-cyber-void: #08090d;
+  --color-cyber-bg: #0d1016;
+  --color-cyber-panel: #151820;
+  --color-cyber-panel-raised: #1d222b;
+
+  --color-cyber-red: #ff4655;
+  --color-cyber-red-dim: #a62e43;
+  --color-cyber-cyan: #5ce1e6;
+  --color-cyber-cyan-dim: #168c98;
+
+  --color-cyber-yellow: #fcee0a;
+  --color-cyber-orange: #FA912A;
+  --color-cyber-green: #35f2a0;
+  --color-cyber-purple: #a987ff;
+
+  --color-cyber-text: #f2f1ed;
+  --color-cyber-muted: #9299a2;
+  --color-cyber-line: #343a45;
+}
+
+.bg-cyber-screen {
+  background-image: linear-gradient(
+    to bottom,
+    #31101B 0%,
+    #1B0A12 20%,
+    #05040C 52%,
+    #06070C 100%
+  );
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+@utility border-cyberpunk-red-dim {
+  position: relative;
+  isolation: isolate;
+  background-color: transparent;
+  --cyberpunk-border-color: var(--color-cyber-red-dim);
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-color: transparent;
+    border-left: 1px solid var(--cyberpunk-border-color);
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%);
+    transition: background-color 180ms ease;
+  }
+  
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-color: var(--cyberpunk-border-color);
+    /* Contorno de 1 px y corte fijo: no se estiran con el ancho. */
+    clip-path: polygon(
+      0 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 0,
+      1px 1px, 1px calc(100% - 1px), calc(100% - 12.414px) calc(100% - 1px),
+      calc(100% - 1px) calc(100% - 12.414px), calc(100% - 1px) 1px, 1px 1px
+    );
+    transition: background-color 180ms ease;
+  }
+  
+  &:hover {
+    --cyberpunk-border-color: var(--color-cyber-red);
+  }
+
+  &:hover::after {
+    background-color: color-mix(in srgb, var(--color-cyber-red-dim) 24%, transparent);
+  }
+}
+
+.cyber-input-frame {
+  --input-line: var(--color-cyber-red-dim);
+  position: relative;
+  background-color: transparent;
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%);
+  transition: background-color 180ms ease;
+}
+
+/* Dos contornos en sentidos opuestos dejan el centro transparente. */
+.cyber-input-frame::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-color: var(--input-line);
+  clip-path: polygon(
+    0 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 0,
+    1px 1px, 1px calc(100% - 1px), calc(100% - 12.414px) calc(100% - 1px),
+    calc(100% - 1px) calc(100% - 12.414px), calc(100% - 1px) 1px, 1px 1px
+  );
+  transition: background-color 180ms ease;
+}
+
+.cyber-input-frame:hover,
+.cyber-input-frame:focus-within {
+  --input-line: var(--color-cyber-red);
+  background-color: color-mix(in srgb, var(--color-cyber-red-dim) 24%, transparent);
+}
+
+.cyber-input-frame[data-invalid="true"] {
+  --input-line: var(--color-cyber-red);
+  background-color: color-mix(in srgb, var(--color-cyber-red) 12%, transparent);
 }
 
 html {
-  scrollbar-gutter: stable;
   background-color: #050505;
   color-scheme: dark;
+}
+
+.page-scroll {
+  --scrollbar-guide: #682331;
+  position: relative;
+  overflow: hidden;
+}
+
+.page-scroll-viewport {
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 12px;
+  scrollbar-width: none;
+}
+
+.page-scroll-viewport::-webkit-scrollbar {
+  display: none;
+}
+
+.page-scroll-rail {
+  position: absolute;
+  inset-block: var(--scrollbar-inset);
+  right: 0;
+  width: 12px;
+  touch-action: none;
+  cursor: pointer;
+}
+
+.page-scroll-rail::before {
+  content: "";
+  position: absolute;
+  inset-block: 0;
+  left: 5px;
+  width: 2px;
+  background-color: var(--scrollbar-guide);
+}
+
+.page-scroll-thumb {
+  position: absolute;
+  left: 4px;
+  width: 4px;
+  background-color: var(--color-cyber-red);
+}
+
+.page-scroll-rail:hover .page-scroll-thumb,
+.page-scroll-rail:focus-visible .page-scroll-thumb {
+  background-color: var(--color-cyber-cyan);
+}
+
+.page-scroll-viewport:focus-visible,
+.page-scroll-rail:focus-visible {
+  outline: 1px solid var(--color-cyber-cyan);
+  outline-offset: -1px;
 }
 
 

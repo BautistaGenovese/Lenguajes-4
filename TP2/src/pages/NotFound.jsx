@@ -1,31 +1,29 @@
-import { ContenedorPagina } from "../components/Contenedores";
+import { Link } from "react-router-dom";
 
 export default function NotFound() {
     return (
-        <div className="w-full bg-zinc-950 p-6 md:p-12 border border-zinc-800/80">
-            {/* Barra de direcciones */}
-            <div className="flex justify-center md:justify-start mb-6">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded border border-zinc-800 bg-zinc-950 text-xs font-mono text-zinc-400">
-                    <span className="w-1.5 h-1.5 rounded-full bg-red-400 animate-pulse"></span>
-                    <span className="text-zinc-500">Error:</span>
-                    <span className="text-zinc-300 font-medium">Page Not Found</span>
-                </div>
+        <section aria-labelledby="error-title" className="w-full max-w-3xl p-6 md:p-10">
+            <div className="flex items-center gap-3 border-b border-cyber-red-dim pb-3 text-xs uppercase tracking-widest text-cyber-red">
+                <span className="h-2 w-2 bg-cyber-red" aria-hidden="true" />
+                <span>Error de navegación</span>
+                <span className="ml-auto text-cyber-muted">ERR_404</span>
             </div>
-            {/* Titulo de la pagina*/}
-            <div className="inline-flex w-full items-stretch gap-2 mb-6">
-                <h1 className="text-4xl md:text-5xl font-mono font-normal text-white">
-                    404 Not Found
+
+            <div className="py-8 md:py-12">
+                <p aria-hidden="true" className="text-8xl md:text-9xl font-semibold leading-none tracking-tight text-cyber-red">404<span className="text-cyber-cyan">_</span></p>
+                <h1 id="error-title" className="mt-5 text-2xl md:text-3xl font-semibold uppercase text-cyber-yellow">
+                    Página no encontrada
                 </h1>
+                <p className="mt-3 max-w-md text-cyber-muted">
+                    Esta dirección no está disponible. Revisá la URL o volvé al inicio para continuar explorando.
+                </p>
             </div>
-            {/* Texto de descripcion*/}
-            <p className="text-sm font-mono text-zinc-400 mb-6">
-                Página no encontrada. Verifica que la URL esté escrita correctamente.
-            </p>
-            {/* Componente */}
-            <span className="font-mono text-xs w-full p-3 border border-dashed border-zinc-600 flex justify-start gap-2">
-                <span className="text-zinc-500">[Error]</span>
-                <span className="text-zinc-300 font-medium">Página no disponible</span>
-            </span>
-        </div>
+
+            <div className="border-t border-cyber-red-dim pt-5">
+                <Link to="/inicio" className="border-cyberpunk-red-dim inline-flex items-center gap-3 px-4 py-2 font-semibold uppercase text-cyber-cyan focus-visible:outline-2 focus-visible:outline-cyber-cyan focus-visible:outline-offset-4">
+                    <span aria-hidden="true">←</span> Volver al inicio
+                </Link>
+            </div>
+        </section>
     );
 }
